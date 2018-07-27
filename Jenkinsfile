@@ -38,6 +38,20 @@ pipeline {
         echo "${params.param1}"
       }
     }
+    stage('Reset') {
+      agent { label 'mesos-qa-uswest2' }
+      steps {
+        script {
+          env.param1 = "foobar"
+        }
+      }
+    }
+    stage('Retrieve Values 2') {
+      agent { label 'mesos-qa-uswest2' }
+      steps {
+        sh "echo ${env.param1}"
+      }
+    }
   }
   post {
     always {
