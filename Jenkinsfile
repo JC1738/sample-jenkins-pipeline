@@ -18,7 +18,7 @@ pipeline {
     }
     stage('Set Values') {
       agent { label 'mesos-qa-uswest2' }
-      node {
+      script {
         param1 = "bar"
       }
     }
