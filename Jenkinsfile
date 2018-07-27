@@ -18,8 +18,8 @@ pipeline {
     }
     stage('Set Values') {
       agent { label 'mesos-qa-uswest2' }
-      steps {
-        sh "${params.param1}=bar"
+      node {
+        param1 = "bar"
       }
     }
     stage('Retrieve Values') {
