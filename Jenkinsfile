@@ -13,7 +13,19 @@ pipeline {
     stage('Inited Values') {
       agent { label 'mesos-qa-uswest2' }
       steps {
-          sh "echo ${params.param1}"
+        sh "echo ${params.param1}"
+      }
+    }
+    stage('Set Values') {
+      agent { label 'mesos-qa-uswest2' }
+      steps {
+        sh "${params.param1}=bar"
+      }
+    }
+    stage('Retrieve Values') {
+      agent { label 'mesos-qa-uswest2' }
+      steps {
+        sh "echo ${params.param1}"
       }
     }
   }
