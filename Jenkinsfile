@@ -14,13 +14,16 @@ pipeline {
       agent { label 'mesos-qa-uswest2' }
       steps {
         sh "echo ${params.param1}"
+          script {
+            env.param1 = params.param1
+          }
       }
     }
     stage('Set Values') {
       agent { label 'mesos-qa-uswest2' }
       steps {
         script {
-          param1 = "bar"
+          params.param1 = "bar"
           env.param1 = "bar"
         }
       }
@@ -29,7 +32,9 @@ pipeline {
       agent { label 'mesos-qa-uswest2' }
       steps {
         sh "echo ${params.param1}"
+        sh "echo ${env.param1}"
         echo "${env.param1}"
+        echo "${parama.param1}"
       }
     }
   }
