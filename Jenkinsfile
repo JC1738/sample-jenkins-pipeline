@@ -17,15 +17,16 @@ pipeline {
           script {
             env.param1 = params.param1
           }
+        echo "${env.param1}"
       }
     }
     stage('Set Values') {
       agent { label 'mesos-qa-uswest2' }
       steps {
         script {
-          params.param1 = "bar"
           env.param1 = "bar"
         }
+        sh "export param1=foobar"
       }
     }
     stage('Retrieve Values') {
@@ -34,7 +35,7 @@ pipeline {
         sh "echo ${params.param1}"
         sh "echo ${env.param1}"
         echo "${env.param1}"
-        echo "${parama.param1}"
+        echo "${params.param1}"
       }
     }
   }
