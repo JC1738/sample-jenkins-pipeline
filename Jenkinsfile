@@ -28,7 +28,7 @@ pipeline {
         }
         sh "export param1=foobar"
           env.param1 = sh (
-            script: 'echo $param1'
+            script: 'echo $param1',
             returnStdout: true
               ).trim()
     }
